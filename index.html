@@ -7,7 +7,33 @@
 </head>
 <body>
     <script>
+        function getComputerChoice(computerValue){
+            computerValue= Math.floor(Math.random() * 3);
+
+            switch(computerValue){
+                case 0:
+                    return 'Rock';
+                    break;
         
+                case 1:
+                    return 'Paper';
+                    break;
+        
+                case 2:
+                    return 'Scissors';
+                    break;
+            }
+        }
+
+        function getHumanChoice(humanValue){
+            humanValue= prompt('Tpye a choice (Rock, Paper or Scissors)'); 
+
+            if(humanValue=='Rock' || humanValue=='Paper' || humanValue=='Scissors'){
+                return(humanValue);
+            }else{
+                alert('Please type a valid value');
+            }
+        }
     </script>
 </body>
 </html>
