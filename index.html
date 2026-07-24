@@ -6,34 +6,74 @@
     <title>Document</title>
 </head>
 <body>
+    <h1>Rock-Paper-Scissors game! :D</h1>
     <script>
+        let humanScore= 0;
+        let computerScore=0;
+
         function getComputerChoice(computerValue){
             computerValue= Math.floor(Math.random() * 3);
 
             switch(computerValue){
                 case 0:
-                    return 'Rock';
+                    return 'scissors';
                     break;
         
                 case 1:
-                    return 'Paper';
+                    return 'paper';
                     break;
         
                 case 2:
-                    return 'Scissors';
+                    return 'rock';
                     break;
             }
         }
 
         function getHumanChoice(humanValue){
-            humanValue= prompt('Tpye a choice (Rock, Paper or Scissors)'); 
-
-            if(humanValue=='Rock' || humanValue=='Paper' || humanValue=='Scissors'){
-                return(humanValue);
+            humanValue= prompt('Type a choice (Rock, Paper or Scissors)'); 
+            return humanValue.toLowerCase();
+        }
+    
+        function playRound(humanChoice, computerChoice){
+            if (humanChoice==computerChoice){
+                return ('Its a draw');
+            }else if(
+                (humanChoice=='rock' && computerChoice=='scissors')||
+                (humanChoice=='scissors' && computerChoice=='paper')||
+                (humanChoice=='paper' && computerChoice=='rock')
+            ){
+                humanScore++;
+                return (`You win! ${humanChoice} beats ${computerChoice}`);
             }else{
-                alert('Please type a valid value');
+                computerScore++;
+                return (`You lose D: ${computerChoice} beats ${humanChoice}`);
             }
         }
+
+        function playGame(){
+            for(let i=0; i<5; i++){
+                const humanSelection  = getHumanChoice();
+                const computerSelection  = getComputerChoice();
+                alert(
+                    `Round ${i+1}\n`+
+                    playRound(humanSelection , computerSelection )
+                );
+            }
+
+            alert(
+                `final human score: ${humanScore}\nfinal computer score: ${computerScore}`
+            );
+
+            if(humanScore>computerScore){
+                alert('Human wins! :D');
+            }else if(computerScore>humanScore){
+                alert('Computer wins :o');
+            }else{
+                alert('Its a draw D:');
+            }
+        }
+
+        playGame();
     </script>
 </body>
 </html>
